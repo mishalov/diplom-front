@@ -1,0 +1,68 @@
+@import "./style/mainContainer.scss";
+@import "./Variables.scss";
+
+.root {
+  width: 100%;
+}
+
+.ant-layout-header {
+  height: 48px !important;
+}
+
+.ant-card {
+  display: inline-block;
+  margin: 24px;
+}
+
+.content-area {
+  padding: 24px;
+}
+
+.d-none {
+  display: none;
+}
+
+.mb-1 {
+  margin-bottom: $margin-1;
+}
+
+.mb-2 {
+  margin-bottom: $margin-2;
+}
+
+.mb-3 {
+  margin-bottom: $margin-3;
+}
+
+.mb-4 {
+  margin-bottom: $margin-4;
+}
+
+.mb-5 {
+  margin-bottom: $margin-5;
+}
+
+.mt-1 {
+  margin-top: $margin-1;
+}
+
+.mt-2 {
+  margin-top: $margin-2;
+}
+
+.mt-3 {
+  margin-top: $margin-3;
+}
+
+.mt-4 {
+  margin-top: $margin-4;
+}
+
+.mt-5 {
+  margin-top: $margin-5;
+}
+
+.control-line {
+  //padding-top: 16px;
+  padding-bottom: 24px;
+}

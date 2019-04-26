@@ -1,0 +1,12 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+
+  &__menu {
+    line-height: 48px;
+  }
+
+  &__user {
+  }
+}

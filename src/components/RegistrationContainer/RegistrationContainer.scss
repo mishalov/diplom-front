@@ -1,0 +1,16 @@
+@import "../../Variables.scss";
+
+.registration-container {
+  @include component-center-container();
+  .registration-block {
+    max-width: 400px;
+
+    .register-form-button {
+      width: 100%;
+    }
+
+    i {
+      opacity: 0.25;
+    }
+  }
+}

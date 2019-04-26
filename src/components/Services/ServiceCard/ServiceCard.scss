@@ -1,0 +1,13 @@
+.service-card {
+  max-width: 400px;
+
+  &__icon {
+    &--online {
+      margin-right: 12px;
+    }
+
+    &--offline {
+      margin-right: 12px;
+    }
+  }
+}

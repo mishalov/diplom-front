@@ -1,26 +1,21 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import RootRouter from "./RootRouter";
+import { Provider } from "react-redux";
+import { store } from "../src/store/root";
+import Notice from "./components/Shared/Notice";
+import "antd/dist/antd.css";
+import "./App.scss";
+import "./App.css";
 
-class App extends Component {
-  render() {
+class App extends React.Component {
+  public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <div className="app" style={{ height: window.innerHeight - 5 + "px" }}>
+          <Notice />
+          <RootRouter />
+        </div>
+      </Provider>
     );
   }
 }

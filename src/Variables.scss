@@ -1,0 +1,13 @@
+@mixin component-center-container() {
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+$margin-1: 4px;
+$margin-2: 8x;
+$margin-3: 12px;
+$margin-4: 16px;
+$margin-5: 20px;

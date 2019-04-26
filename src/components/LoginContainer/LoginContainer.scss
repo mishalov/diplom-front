@@ -1,0 +1,16 @@
+@import "../../Variables.scss";
+
+.login-container {
+  @include component-center-container();
+  .login-block {
+    max-width: 400px;
+
+    .login-form-button {
+      width: 100%;
+    }
+
+    .login-form-forgot {
+      float: right;
+    }
+  }
+}
