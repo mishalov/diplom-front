@@ -5,6 +5,7 @@ import {
   IServiceCreateParams,
   IServiceListItem
 } from "../store/types/services";
+import { IDependencyToCreate } from "../store/types/dependencies";
 
 interface IRequestParams {
   url: string;
@@ -69,6 +70,12 @@ class Api {
     request({ url: `services/${id}`, method: "delete" });
   public static updateService = (id: number, service: IServiceListItem) =>
     request({ url: `services/${id}`, method: "post", data: { service } });
+
+  /**Действия с зависимостями */
+  public static createDependency = (dependency: IDependencyToCreate) =>
+    request({ url: "dependency", method: "post", data: { dependency } });
+  public static getDependencies = () =>
+    request({ url: "dependency", method: "get" });
 }
 
 export { Api };

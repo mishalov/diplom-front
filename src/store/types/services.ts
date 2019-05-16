@@ -12,12 +12,14 @@ export interface IServiceListItem {
   port: string;
   type: string;
   fileBase64: string;
+  dependencies?: string[];
 }
 
 export interface IServiceCreateParams {
   name: string;
-  type: "node" | "python" | "ruby";
+  type: "node" | "python";
   replicas: number;
+  dependencies?: string[];
   fileBase64: string;
 }
 

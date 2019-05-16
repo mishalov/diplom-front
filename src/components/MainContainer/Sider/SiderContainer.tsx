@@ -53,6 +53,11 @@ class SiderContainer extends React.Component<ISiderContainer> {
               <Menu.Item key="5">
                 <Link to="/services/list">{makeTitle("/services/list")}</Link>
               </Menu.Item>
+              <Menu.Item key="6">
+                <Link to="/services/dependencies">
+                  {makeTitle("/services/dependencies")}
+                </Link>
+              </Menu.Item>
             </SubMenu>
 
             <SubMenu

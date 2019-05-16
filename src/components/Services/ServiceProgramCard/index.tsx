@@ -16,13 +16,13 @@ let id = 0;
 class ServiceProgramCard extends React.Component<IServiceProgramCard> {
   state = { result: "" };
   public remove = (k: string) => {
+    console.log("k: ", k);
     const { form } = this.props;
     const keys = form.getFieldValue("keys");
-    if (keys.length === 1) {
-      return;
-    }
     form.setFieldsValue({
-      keys: keys.filter((key: string) => key !== k)
+      keys: keys.filter((key: string) => {
+        return key != k;
+      })
     });
   };
 

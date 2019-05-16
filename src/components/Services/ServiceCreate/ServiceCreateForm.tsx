@@ -3,6 +3,7 @@ import { Form, Input, InputNumber, Select, Button, Row } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { IHandleCreateParams } from ".";
 import { IServiceListItem } from "../../../store/types/services";
+import { IDependencyListState } from "../../../store/types/dependencies";
 
 const Item = Form.Item;
 
@@ -26,12 +27,19 @@ const formItemLayout = {
 interface IServiceCreateFormProps extends FormComponentProps {
   handleCreate: (params: IHandleCreateParams) => void;
   handleEdit: (params: IServiceListItem) => void;
+  dependencyList: IDependencyListState;
   service?: IServiceListItem;
 }
 
 class ServiceCreateForm extends React.Component<IServiceCreateFormProps> {
   public render() {
-    const { form, service, handleCreate, handleEdit } = this.props;
+    const {
+      form,
+      service,
+      handleCreate,
+      handleEdit,
+      dependencyList
+    } = this.props;
     const { getFieldDecorator } = form;
     return (
       <Form
@@ -85,7 +93,25 @@ class ServiceCreateForm extends React.Component<IServiceCreateFormProps> {
             <Select style={inputStyle}>
               <Select.Option value="node">JavaScript</Select.Option>
               <Select.Option value="python">Python</Select.Option>
-              <Select.Option value="ruby">Ruby</Select.Option>
+            </Select>
+          )}
+        </Item>
+        <Item label="Пакеты">
+          {getFieldDecorator("dependencies")(
+            <Select
+              style={inputStyle}
+              loading={!dependencyList.solved}
+              mode="multiple"
+              defaultValue={[]}
+            >
+              {dependencyList.data &&
+                dependencyList.data.map(dependency => (
+                  <Select.Option value={dependency.id}>
+                    {`${dependency.lang} - ${dependency.name}:${
+                      dependency.version
+                    }`}
+                  </Select.Option>
+                ))}
             </Select>
           )}
         </Item>

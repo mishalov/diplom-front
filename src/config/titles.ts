@@ -4,7 +4,8 @@ const titles = {
   "/services/list": "Мои сервисы",
   "/services/create": "Создать сервис",
   "/services/[0-9]+/edit": "Редактирование сервиса",
-  "/services/[0-9]+": "Информация о сервисе"
+  "/services/[0-9]+": "Информация о сервисе",
+  "/services/dependencies": "Зависимости"
 };
 
 export const makeTitle = (pathname: string) => {

@@ -9,6 +9,7 @@ import ServicesList from "../Services/ServiceList/ServicesList";
 import { makeTitle } from "../../config/titles";
 import ServiceCreate from "../Services/ServiceCreate";
 import ServicePage from "../Services/ServicePage";
+import DependenciesList from "../Services/DependenciesList";
 const { Content } = Layout;
 
 class MainContainer extends React.Component<any> {
@@ -47,6 +48,9 @@ class MainContainer extends React.Component<any> {
               </Route>
               <Route path="/services/create" exact={true}>
                 <ServiceCreate />
+              </Route>
+              <Route path="/services/dependencies" exact={true}>
+                <DependenciesList />
               </Route>
               <Route path="/services/:id/edit" exact={true}>
                 <ServiceCreate />

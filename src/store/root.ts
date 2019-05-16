@@ -17,7 +17,8 @@ import serviceSaga from "./actions/serviceSaga";
 import logger from "redux-logger";
 import { noticeReducer } from "./reducer/noticeReducer";
 import { serviceReducer } from "./reducer/serviceReducer";
-import { IServiceReducer } from "./types/services";
+import { dependenciesReducer } from "./reducer/dependenciesReducer";
+import dependencySaga from "./actions/dependenciesSaga";
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
 // the reducer acts on the corresponding ApplicationState property type.
@@ -26,7 +27,8 @@ export const rootReducer = combineReducers<IStore>({
   auth: authReducer,
   server: serverReducer,
   notice: noticeReducer,
-  service: serviceReducer
+  service: serviceReducer,
+  dependencies: dependenciesReducer
 });
 
 // The top-level state object
@@ -55,3 +57,4 @@ export const store = createStoreWithMiddle(rootReducer, {});
 sagaMiddleware.run(authSaga);
 sagaMiddleware.run(serviceSaga);
 sagaMiddleware.run(serverSaga);
+sagaMiddleware.run(dependencySaga);

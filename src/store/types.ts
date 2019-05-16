@@ -1,6 +1,7 @@
 import { IAuthReducer } from "./types/auth";
 import { IServerReducer } from "./types/servers";
 import { IServiceReducer } from "./types/services";
+import { IDependencyReducer } from "./types/dependencies";
 
 export interface IStateObject {
   loading: boolean;
@@ -34,4 +35,5 @@ export interface IStore {
   server: IServerReducer;
   notice: INotice;
   service: IServiceReducer;
+  dependencies: IDependencyReducer;
 }

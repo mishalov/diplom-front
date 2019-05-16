@@ -14,12 +14,13 @@ import {
 import { IStore } from "../../../store/types";
 import { Dispatch } from "redux";
 import { action } from "typesafe-actions";
-import { SERVICE } from "../../../store/actionTypes";
+import { SERVICE, DEPENDENCIES } from "../../../store/actionTypes";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
+import { IDependencyListState } from "../../../store/types/dependencies";
 
 export interface IHandleCreateParams {
-  type: "node" | "python" | "ruby";
+  type: "node" | "python";
   name: string;
   replicas: number;
 }
@@ -27,6 +28,8 @@ export interface IHandleCreateParams {
 interface IServiceCreateProps extends RouteComponentProps {
   createService: (params: IServiceCreateParams) => void;
   editService: (params: IServiceListItem) => void;
+  getDependencies: () => void;
+  dependenciesList: IDependencyListState;
   service: IServiceReducer;
 }
 
@@ -34,11 +37,12 @@ class ServiceCreate extends React.Component<IServiceCreateProps> {
   state = {
     toEdit: undefined,
     program:
-      'module.exports.program = function(args) { \n\treturn "я родился!"; \n};  '
+      'module.exports.program = function(args) { \n\treturn "Hello world!"; \n};  '
   };
 
   componentDidMount() {
-    const { service, match, history } = this.props;
+    const { service, match, history, getDependencies } = this.props;
+    getDependencies();
     const id = (match.params as any).id;
     if (id) {
       const serviceNow = service.serviceList.data!.find(el => el.id == id);
@@ -77,11 +81,12 @@ class ServiceCreate extends React.Component<IServiceCreateProps> {
   };
 
   public render() {
-    const { state } = this;
+    const { state, props } = this;
     return (
       <Row gutter={12} type="flex">
         <Col xl={{ span: 10, order: 1 }} sm={{ span: 24, order: 2 }}>
           <ServiceCreateForm
+            dependencyList={props.dependenciesList}
             handleEdit={this.handleEdit}
             handleCreate={this.handleCreate}
             service={this.state.toEdit}
@@ -113,12 +118,16 @@ class ServiceCreate extends React.Component<IServiceCreateProps> {
   }
 }
 
-const mapStateToProps = (state: IStore) => ({ service: state.service });
+const mapStateToProps = (state: IStore) => ({
+  service: state.service,
+  dependenciesList: state.dependencies.dependenciesList
+});
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   editService: (params: IServiceListItem) =>
     dispatch(action(SERVICE.EDIT.REQUEST, params)),
   createService: (params: IServiceCreateParams) =>
-    dispatch(action(SERVICE.CREATE.REQUEST, params))
+    dispatch(action(SERVICE.CREATE.REQUEST, params)),
+  getDependencies: () => dispatch(action(DEPENDENCIES.GET.REQUEST))
 });
 
 export default connect(
